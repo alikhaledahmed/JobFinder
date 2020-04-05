@@ -1,19 +1,49 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import AuthScreen from './screens/AuthScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+import MapScreen from './screens/MapScreen';
+import DeckScreen from './screens/DeckScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import ReviewScreen from './screens/ReviewScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Button } from 'react-native';
+
+const Tab = createBottomTabNavigator();
+
+const StackNavigator = createStackNavigator();
+
+const StackNavigatorScreen = () => (
+    <StackNavigator.Navigator>
+        <StackNavigator.Screen name="Review Jobs" component={ReviewScreen} />
+        <StackNavigator.Screen name="Settings" component={SettingsScreen} />
+    </StackNavigator.Navigator>
+);
+
+const MainTab = createBottomTabNavigator();
+const MainTabScreen = () => (
+    <MainTab.Navigator>
+        <Tab.Screen name="Map" component={MapScreen} />
+        <Tab.Screen name="Deck" component={DeckScreen} />
+        <Tab.Screen name="ReviewNavigator" component={StackNavigatorScreen} />
+    </MainTab.Navigator>
+);
+
+class App extends Component {
+
+    render() {
+        return (
+            <NavigationContainer>
+                <Tab.Navigator>
+                    <Tab.Screen name="Welcome" component={WelcomeScreen} />
+                    <Tab.Screen name="Auth" component={AuthScreen} />
+                    <Tab.Screen name="Main" component={MainTabScreen} />
+                </Tab.Navigator>
+            </NavigationContainer>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
