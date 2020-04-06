@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, AsyncStorage, Button, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../redux/actions';
 
 
 class GateScreen extends Component {

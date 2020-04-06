@@ -8,7 +8,7 @@ import ReviewScreen from './src/screens/ReviewScreen';
 import GateScreen from './src/screens/GateScreen';
 
 import { Provider } from 'react-redux';
-import store from './src/store';
+import store from './src/redux/store';
 import { navigationRef } from './src/RootNavigation';
 
 import { NavigationContainer } from '@react-navigation/native';
