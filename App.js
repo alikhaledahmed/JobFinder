@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import AuthScreen from './screens/AuthScreen';
-import WelcomeScreen from './screens/WelcomeScreen';
-import MapScreen from './screens/MapScreen';
-import DeckScreen from './screens/DeckScreen';
-import SettingsScreen from './screens/SettingsScreen';
-import ReviewScreen from './screens/ReviewScreen';
+import AuthScreen from './src/screens/AuthScreen';
+import WelcomeScreen from './src/screens/WelcomeScreen';
+import MapScreen from './src/screens/MapScreen';
+import DeckScreen from './src/screens/DeckScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
+import ReviewScreen from './src/screens/ReviewScreen';
+import GateScreen from './src/screens/GateScreen';
+
+import { Provider } from 'react-redux';
+import store from './src/store';
+import { navigationRef } from './src/RootNavigation';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Button } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,13 +39,16 @@ class App extends Component {
 
     render() {
         return (
-            <NavigationContainer>
-                <Tab.Navigator>
-                    <Tab.Screen name="Welcome" component={WelcomeScreen} />
-                    <Tab.Screen name="Auth" component={AuthScreen} />
-                    <Tab.Screen name="Main" component={MainTabScreen} />
-                </Tab.Navigator>
-            </NavigationContainer>
+            <Provider store={store}>
+                <NavigationContainer ref={navigationRef}>
+                    <Tab.Navigator>
+                        <Tab.Screen name="Gate" component={GateScreen} options={{ tabBarVisible: false }} />
+                        <Tab.Screen name="Welcome" component={WelcomeScreen} options={{ tabBarVisible: false }} />
+                        <Tab.Screen name="Auth" component={AuthScreen} options={{ tabBarVisible: false }} />
+                        <Tab.Screen name="Main" component={MainTabScreen} options={{ tabBarVisible: false }} />
+                    </Tab.Navigator>
+                </NavigationContainer>
+            </Provider>
         );
     }
 }

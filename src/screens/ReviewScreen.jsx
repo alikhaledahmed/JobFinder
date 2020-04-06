@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 
 class ReviewScreen extends Component {    
     render() {
-    console.log();
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text>Review Screen</Text>
